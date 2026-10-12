@@ -3,8 +3,7 @@
 
 ## Dasar Teori
 Abstract Data Type (ADT) adalah TYPE dan sekumpulan PRIMITIF (operasi dasar) terhadap TYPE tersebut. Selain itu, dalam sebuah ADT yang lengkap, disertakan pula definisi invarian dari TYPE dan aksioma yang berlaku. ADT merupakan definisi STATIK [1]. Definisi type dari sebuah ADT dapat mengandung sebuah definisi ADT lain. Misalnya ADT waktu yang terdiri dari ADT JAM dan ADT DATE, atau Garis terdiri dari dua buah ADT POINT [1].
-TYPE diterjemahkan menjadi type terdefinisi dalam bahasa yang bersangkutan. Jika dalam bahasa C menggunakan struct PRIMITIF, dalam konteks prosedural, diterjemahkan menjadi fungsi atau prosedur. PRIMITIF dikelompokkan menjadi: Konstruktor/Kreator, Selector, Prosedur pengubah nilai komponen, Tipe validator komponen, Destruktor/Dealokator, Baca/Tulis, Operator relasional, Aritmatika, dan Konversi dari tipe tersebut ke tipe dasar dan sebaliknya [1].
-ADT biasanya diimplementasikan menjadi dua buah modul utama dan 1 modul interface program utama (driver). Dua modul tersebut adalah sebagai berikut:
+TYPE diterjemahkan menjadi type terdefinisi dalam bahasa yang bersangkutan. Jika dalam bahasa C menggunakan struct PRIMITIF, dalam konteks prosedural, diterjemahkan menjadi fungsi atau prosedur. PRIMITIF dikelompokkan menjadi: Konstruktor/Kreator, Selector, Prosedur pengubah nilai komponen, Tipe validator komponen, Destruktor/Dealokator, Baca/Tulis, Operator relasional, Aritmatika, dan Konversi dari tipe tersebut ke tipe dasar dan sebaliknya [1].ADT biasanya diimplementasikan menjadi dua buah modul utama dan 1 modul interface program utama (driver). Dua modul tersebut adalah sebagai berikut:
 1. Definisi/Spesifikasi Type dan Primitif/Header fungsi (.h)
 Spesifikasi type sesuai dengan kaidah bahasa yang dipakai
 Spesifikasi dari primitif sesuai dengan kaidah dalam konteks prosedural, yaitu:
