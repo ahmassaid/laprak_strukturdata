@@ -1,4 +1,5 @@
 # Repository Praktikum Struktur Data
 Nama : Ahmas Sa'id
-NIM : 109082500045
-Kelas : S1IF-13-01
+<br>NIM : 109082500045
+<br>Kelas : S1IF-13-01
+<br>Telkom University Purwokerto
