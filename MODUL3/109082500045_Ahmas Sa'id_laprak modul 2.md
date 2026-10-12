@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul 2 - Fungsi, Prosedur, Array, Pointer & Reference</h1>
+# <h1 align="center">Laporan Praktikum Modul 3 - (ADT)</h1>
 <p align="center">Ahmas Sa'id - 109082500045</p>
 
 ## Dasar Teori
