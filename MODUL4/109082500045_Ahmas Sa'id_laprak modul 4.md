@@ -383,7 +383,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL3/output_unguided1.png)
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL4/UNGUIDED1/output_unguided1.png)
 
 Program membuat list kosong terlebih dahulu dengan CreateList, kemudian mengalokasikan 5 node secara berurutan dengan nilai 2, 0, 8, 12, dan 9 lalu menyisipkannya di awal list menggunakan insertFirst. Karena penyisipan selalu di awal, node yang terakhir disisipkan (9) menjadi elemen pertama list, diikuti 12, 8, 0, dan 2 sebagai elemen terakhir. Fungsi printInfo menelusuri list dari First hingga Nil dan menampilkan setiap info node sehingga output yang dihasilkan adalah 9 12 8 0 2, sesuai dengan ilustrasi linked list pada soal.
 
@@ -591,7 +591,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL3/output_unguided2.png)
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL4/UNGUIDED2/output_unguided2.png)
 
 Program melanjutkan dari list hasil Soal 1 yaitu 9 → 12 → 8 → 0 → 2. Operasi deleteFirst menghapus node 9 karena berada di awal list, menghasilkan 12 → 8 → 0 → 2. Operasi deleteLast menghapus node 2 karena berada di akhir list, menghasilkan 12 → 8 → 0. Operasi deleteAfter dengan Prec = node 12 (dicari menggunakan findElm) menghapus node 8 yang berada tepat setelahnya, menghasilkan 12 → 0. Fungsi nbList menghitung jumlah node tersisa yaitu 2. Terakhir, deleteList menghapus seluruh node beserta memori yang dialokasikan sehingga list kembali kosong dengan jumlah node 0, sesuai dengan output yang diharapkan pada soal.
 
