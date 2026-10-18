@@ -1,0 +1,603 @@
+# <h1 align="center">Laporan Praktikum Modul 4 - Singly Linked List (Bagian Pertama)</h1>
+<p align="center">Ahmas Sa'id - 109082500045</p>
+
+## Dasar Teori
+Singly Linked List merupakan model ADT Linked List yang hanya memiliki satu arah pointer. Setiap elemen (node) terdiri dari dua bagian: info (data yang disimpan) dan next (pointer yang menunjuk ke elemen berikutnya). Linked list bersifat dinamis karena dapat tumbuh dan mengerut sesuai kebutuhan, berbeda dengan array yang bersifat statis [1].
+Istilah penting dalam Singly Linked List:
+first/head: pointer yang menunjuk alamat elemen pertama list
+next: pointer pada elemen yang berfungsi sebagai successor
+Nil/NULL: nilai kosong, tidak mengacu ke mana pun
+Node/simpul: tempat penyimpanan data pada memori
+Operasi dasar ADT Linked List meliputi: CreateList, alokasi, dealokasi, insertFirst, insertLast, insertAfter, deleteFirst, deleteLast, deleteAfter, printInfo, dan nbList [1].
+Implementasi ADT di C++ dilakukan dengan memisahkan file .h (header untuk prototipe dan tipe data), .cpp (realisasi primitif), dan main.cpp (driver program) [2].
+
+## Guided 
+
+### 1. Program ADT Singly Linked List dengan Data Mahasiswa
+Program ini merupakan implementasi ADT Singly Linked List yang memisahkan deklarasi tipe dan primitif ke dalam file list.h, realisasi primitif ke dalam file list.cpp, dan program utama di main.cpp. Struktur data terdiri dari mahasiswa (nama, nim, umur), node dengan field isidata bertipe dataMahasiswa dan next bertipe address, serta linkedList dengan field first.
+
+```C++
+File: list.h
+#ifndef LIST_H
+#define LIST_H
+#define Nil NULL
+
+#include<iostream>
+using namespace std;
+
+struct mahasiswa {
+    string nama;
+    string nim;
+    int umur;
+};
+
+typedef mahasiswa dataMahasiswa;
+
+typedef struct node *address;
+
+struct node {
+    dataMahasiswa isidata;
+    address next;
+};
+
+struct linkedList {
+    address first;
+};
+
+bool isEmpty(linkedList list);
+void createList(linkedList &list);
+address alokasi(string nama, string nim, int umur);
+void dealokasi(address &node);
+void printList(linkedList list);
+void insertFirst(linkedList &list, address nodeBaru);
+void insertAfter(linkedList &list, address nodeBaru, address prev);
+void insertLast(linkedList &list, address nodeBaru);
+
+void delFirst(linkedList &list);
+void delLast(linkedList &list);
+void delAfter(linkedList &list, address nodeHapus, address nodePrev);
+int nbList(linkedList list);
+void deleteList(linkedList &list);
+
+#endif
+
+File: list.cpp
+#include "list.h"
+#include <iostream>
+using namespace std;
+
+//I.S = Initial State / kondisi awal
+//F.S = Final State / kondisi akhir
+
+//fungsi untuk cek apakah list kosong atau tidak
+bool isEmpty(linkedList list) {
+    if(list.first == Nil){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//pembuatan linked list kosong
+void createList(linkedList &list) {
+    /* I.S. sembarang
+       F.S. terbentuk list kosong */
+    list.first = Nil;
+}
+
+//pembuatan node baru dengan menerapkan manajemen memori
+address alokasi(string nama, string nim, int umur) {
+    /* I.S. sembarang
+       F.S. mengembalikan alamat node baru dengan isidata = sesuai parameter dan next = Nil */
+    address nodeBaru = new node;
+    nodeBaru->isidata.nama = nama;
+    nodeBaru->isidata.nim = nim;
+    nodeBaru->isidata.umur = umur;
+    nodeBaru->next = Nil;
+    return nodeBaru;
+}
+
+//penghapusan node dengan menerapkan manajemen memori
+void dealokasi(address &node) {
+    /* I.S. P terdefinisi
+       F.S. memori yang digunakan node dikembalikan ke sistem */
+    node->next = Nil;
+    delete node;
+}
+
+//prosedur-prosedur untuk insert / menambahkan node baru kedalam list
+void insertFirst(linkedList &list, address nodeBaru) {
+    /* I.S. sembarang, P sudah dialokasikan
+       F.S. menempatkan elemen list (node) pada awal list */
+    nodeBaru->next = list.first;
+    list.first = nodeBaru;
+}
+
+void insertAfter(linkedList &list, address nodeBaru, address prev) {
+    /* I.S. sembarang, nodeBaru dan Prev alamat salah satu elemen list (node)
+       F.S. menempatkan elemen (node) sesudah elemen node Prev */
+    if (prev != Nil) {
+        nodeBaru->next = prev->next;
+        prev->next = nodeBaru;
+    } else {
+        cout << "Node sebelumnya tidak valid!" << endl;
+    }
+}
+
+void insertLast(linkedList &list, address nodeBaru) {
+    /* I.S. sembarang, nodeBaru sudah dialokasikan
+       F.S. menempatkan elemen nodeBaru pada akhir list */
+    if (isEmpty(list)) {
+        list.first = nodeBaru;
+    } else {
+        address nodeBantu = list.first;
+        while (nodeBantu->next != Nil) {
+            nodeBantu = nodeBantu->next;
+        }
+        nodeBantu->next = nodeBaru;
+    }
+}
+
+//prosedur-prosedur untuk delete / menghapus node yang ada didalam list
+void delFirst(linkedList &list){
+    /* I.S. list tidak kosong
+       F.S. node pertama di list terhapus*/
+    address nodeHapus;
+    if (isEmpty(list) == false) {
+        nodeHapus = list.first;
+        list.first = list.first->next;
+        nodeHapus->next = Nil;
+        dealokasi(nodeHapus);
+    } else {
+        cout << "List kosong!" << endl;
+    }
+}
+
+void delLast(linkedList &list){
+    /* I.S. list tidak kosong
+       F.S. node terakhir di list terhapus */
+    address nodeHapus, nodePrev;
+    if(isEmpty(list) == false){
+        nodeHapus = list.first;
+        if(nodeHapus->next == Nil){
+            list.first = Nil;
+            dealokasi(nodeHapus);
+        } else {
+            while(nodeHapus->next != Nil){
+                nodePrev = nodeHapus;
+                nodeHapus = nodeHapus->next;
+            }
+            nodePrev->next = Nil;
+            dealokasi(nodeHapus);
+        }
+    } else {
+        cout << "list kosong" << endl;
+    }
+}
+
+void delAfter(linkedList &list, address nodeHapus, address nodePrev){
+    /* I.S. list tidak kosong, Prev alamat salah satu elemen list
+       F.S. nodeBantu adalah alamat dari Prev->next, menghapus Prev->next dari list */
+    if(isEmpty(list) == true){
+        cout << "list kosong!" << endl;
+    } else {
+        if (nodePrev != Nil && nodePrev->next != Nil) {
+            nodeHapus = nodePrev->next;
+            nodePrev->next = nodeHapus->next;
+            nodeHapus->next = Nil;
+            dealokasi(nodeHapus);
+        } else {
+            cout << "Node sebelumnya (prev) tidak valid!" << endl;
+        }
+    }
+}
+
+//prosedur untuk menampilkan isi list
+void printList(linkedList list) {
+    /* I.S. list mungkin kosong
+       F.S. jika list tidak kosong menampilkan semua info yang ada pada list */
+    if (isEmpty(list)) {
+        cout << "List kosong." << endl;
+    } else {
+        address nodeBantu = list.first;
+        while (nodeBantu != Nil) {
+            cout << "Nama : " << nodeBantu->isidata.nama << ", NIM : " << nodeBantu->isidata.nim << ", Usia : " << nodeBantu->isidata.umur << endl;
+            nodeBantu = nodeBantu->next;
+        }
+    }
+}
+
+//function untuk menampilkan jumlah node didalam list
+int nbList(linkedList list) {
+    /* I.S. list sudah ada
+       F.S. menampilkan jumlah node didalam list*/
+    int count = 0;
+    address nodeBantu = list.first;
+    while (nodeBantu != Nil) {
+        count++;
+        nodeBantu = nodeBantu->next;
+    }
+    return count;
+}
+
+//prosedur untuk menghapus list (menghapus semua node didalam list)
+void deleteList(linkedList &list){
+    /* I.S. list sudah ada
+       F.S. menghapus semua node didalam list*/
+    address nodeBantu, nodeHapus;
+    nodeBantu = list.first;
+    while(nodeBantu != Nil){
+        nodeHapus = nodeBantu;
+        nodeBantu = nodeBantu->next;
+        dealokasi(nodeHapus);
+    }
+    list.first = Nil;
+    cout << "List sudah terhapus!" << endl;
+}
+
+File: main.cpp
+#include "list.h"
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    linkedList List;
+    address nodeA, nodeB, nodeC, nodeD, nodeE = Nil;
+    createList(List);
+
+    dataMahasiswa mhs;
+
+    nodeA = alokasi("Dhimas", "2311102151", 20);
+    nodeB = alokasi("Arvin", "221110014", 21);
+    nodeC = alokasi("Rizal", "231110029", 20);
+    nodeD = alokasi("Satro", "2211102173", 21);
+    nodeE = alokasi("Joshua", "2311102133", 21);
+
+    insertFirst(List, nodeA);
+    insertLast(List, nodeB);
+    insertAfter(List, nodeC, nodeA);
+    insertAfter(List, nodeD, nodeC);
+    insertLast(List, nodeE);
+
+    cout << "--- ISI LIST SETELAH DILAKUKAN INSERT ---" << endl;
+    printList(List);
+    cout << "Jumlah node : " << nbList(List) << endl;
+    cout << endl;
+
+    delFirst(List);
+    delLast(List);
+    delAfter(List, nodeD, nodeC);
+
+    cout << "--- ISI LIST SETELAH DILAKUKAN DELETE ---" << endl;
+    printList(List);
+    cout << "Jumlah node : " << nbList(List) << endl;
+    cout << endl;
+
+    deleteList(List);
+    cout << "--- ISI LIST SETELAH DILAKUKAN HAPUS LIST ---" << endl;
+    printList(List);
+    cout << "Jumlah node : " << nbList(List) << endl;
+    cout << endl;
+
+    return 0;
+}
+```
+Program ini mendemonstrasikan konsep ADT Singly Linked List dengan pemisahan file header, implementasi, dan driver. Data yang digunakan adalah data mahasiswa dengan field nama, nim, dan umur. Proses insert dilakukan dengan insertFirst (Dhimas di awal), insertLast (Arvin di akhir), insertAfter (Rizal setelah Dhimas, Satro setelah Rizal), dan insertLast (Joshua di akhir) sehingga menghasilkan urutan Dhimas → Rizal → Satro → Arvin → Joshua dengan jumlah node 5. Proses delete dilakukan dengan delFirst (hapus Dhimas), delLast (hapus Joshua), dan delAfter dengan prev = Rizal (hapus Satro), sehingga tersisa Rizal → Arvin dengan jumlah node 2. Terakhir, deleteList menghapus seluruh node beserta memorinya sehingga list kembali kosong dengan jumlah node 0.
+
+## Unguided 
+
+### 1. Program ADT Singly Linked List - Insert First
+
+```C++
+File: Singlylist.h
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+
+typedef int infotype;
+typedef struct Elmlist *address;
+
+struct Elmlist {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address First;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+#endif
+
+File: Singlylist.cpp
+#include "Singlylist.h"
+#include <iostream>
+using namespace std;
+
+void CreateList(List &L) {
+    L.First = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new Elmlist;
+    P->info = x;
+    P->next = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void printInfo(List L) {
+    address P = L.First;
+    while (P != Nil) {
+        cout << P->info;
+        if (P->next != Nil) cout << " ";
+        P = P->next;
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    P->next = L.First;
+    L.First = P;
+}
+
+File: main.cpp
+#include "Singlylist.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = Nil;
+    CreateList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    printInfo(L);
+    return 0;
+}
+```
+### Output Unguided 1 :
+
+##### Output 1
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL3/output_unguided1.png)
+
+Program membuat list kosong terlebih dahulu dengan CreateList, kemudian mengalokasikan 5 node secara berurutan dengan nilai 2, 0, 8, 12, dan 9 lalu menyisipkannya di awal list menggunakan insertFirst. Karena penyisipan selalu di awal, node yang terakhir disisipkan (9) menjadi elemen pertama list, diikuti 12, 8, 0, dan 2 sebagai elemen terakhir. Fungsi printInfo menelusuri list dari First hingga Nil dan menampilkan setiap info node sehingga output yang dihasilkan adalah 9 12 8 0 2, sesuai dengan ilustrasi linked list pada soal.
+
+### 2. Program ADT Singly Linked List - Delete First, Delete Last, Delete After
+
+```C++
+File: Singlylist.h
+#ifndef SINGLYLIST_H_INCLUDED
+#define SINGLYLIST_H_INCLUDED
+
+#include <iostream>
+using namespace std;
+
+#define Nil NULL
+
+typedef int infotype;
+typedef struct Elmlist *address;
+
+struct Elmlist {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address First;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+void insertLast(List &L, address P);
+void insertAfter(List &L, address P, address Prec);
+void deleteFirst(List &L, address &P);
+void deleteLast(List &L, address &P);
+void deleteAfter(List &L, address &P, address Prec);
+int nbList(List L);
+void deleteList(List &L);
+address findElm(List L, infotype x);
+
+#endif
+
+File: Singlylist.cpp
+#include "Singlylist.h"
+#include <iostream>
+using namespace std;
+
+void CreateList(List &L) {
+    L.First = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new Elmlist;
+    P->info = x;
+    P->next = Nil;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void printInfo(List L) {
+    address P = L.First;
+    while (P != Nil) {
+        cout << P->info;
+        if (P->next != Nil) cout << " ";
+        P = P->next;
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    P->next = L.First;
+    L.First = P;
+}
+
+void insertLast(List &L, address P) {
+    if (L.First == Nil) {
+        L.First = P;
+    } else {
+        address Q = L.First;
+        while (Q->next != Nil) {
+            Q = Q->next;
+        }
+        Q->next = P;
+    }
+}
+
+void insertAfter(List &L, address P, address Prec) {
+    if (Prec != Nil) {
+        P->next = Prec->next;
+        Prec->next = P;
+    }
+}
+
+void deleteFirst(List &L, address &P) {
+    if (L.First != Nil) {
+        P = L.First;
+        L.First = L.First->next;
+        P->next = Nil;
+    } else {
+        P = Nil;
+    }
+}
+
+void deleteLast(List &L, address &P) {
+    if (L.First == Nil) {
+        P = Nil;
+    } else if (L.First->next == Nil) {
+        P = L.First;
+        L.First = Nil;
+    } else {
+        address Q = L.First;
+        while (Q->next->next != Nil) {
+            Q = Q->next;
+        }
+        P = Q->next;
+        Q->next = Nil;
+    }
+}
+
+void deleteAfter(List &L, address &P, address Prec) {
+    if (Prec != Nil && Prec->next != Nil) {
+        P = Prec->next;
+        Prec->next = P->next;
+        P->next = Nil;
+    } else {
+        P = Nil;
+    }
+}
+
+int nbList(List L) {
+    int count = 0;
+    address P = L.First;
+    while (P != Nil) {
+        count++;
+        P = P->next;
+    }
+    return count;
+}
+
+void deleteList(List &L) {
+    address P;
+    while (L.First != Nil) {
+        deleteFirst(L, P);
+        dealokasi(P);
+    }
+}
+
+address findElm(List L, infotype x) {
+    address P = L.First;
+    while (P != Nil) {
+        if (P->info == x) return P;
+        P = P->next;
+    }
+    return Nil;
+}
+
+File: main.cpp
+#include "Singlylist.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = Nil;
+    CreateList(L);
+
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    address P;
+
+    deleteFirst(L, P);
+    dealokasi(P);
+
+    deleteLast(L, P);
+    dealokasi(P);
+
+    address Prec = findElm(L, 12);
+    deleteAfter(L, P, Prec);
+    dealokasi(P);
+
+    printInfo(L);
+    cout << "Jumlah node : " << nbList(L) << endl;
+
+    deleteList(L);
+    cout << "- List Berhasil Terhapus -" << endl;
+    cout << "Jumlah node : " << nbList(L) << endl;
+
+    return 0;
+}
+```
+### Output Unguided 2 :
+
+##### Output 1
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL3/output_unguided2.png)
+
+Program melanjutkan dari list hasil Soal 1 yaitu 9 → 12 → 8 → 0 → 2. Operasi deleteFirst menghapus node 9 karena berada di awal list, menghasilkan 12 → 8 → 0 → 2. Operasi deleteLast menghapus node 2 karena berada di akhir list, menghasilkan 12 → 8 → 0. Operasi deleteAfter dengan Prec = node 12 (dicari menggunakan findElm) menghapus node 8 yang berada tepat setelahnya, menghasilkan 12 → 0. Fungsi nbList menghitung jumlah node tersisa yaitu 2. Terakhir, deleteList menghapus seluruh node beserta memori yang dialokasikan sehingga list kembali kosong dengan jumlah node 0, sesuai dengan output yang diharapkan pada soal.
+
+## Kesimpulan
+Dari praktikum Modul 4 ini, dapat disimpulkan bahwa Singly Linked List merupakan struktur data dinamis yang terdiri dari node-node saling berkait melalui pointer next. Implementasi ADT di C++ dilakukan dengan memisahkan file .h (header untuk tipe data dan prototipe), .cpp (realisasi primitif), dan main.cpp (driver). Operasi insertFirst menyisipkan node di awal list sehingga urutan data menjadi terbalik dari urutan input. Operasi penghapusan (deleteFirst, deleteLast, deleteAfter) memungkinkan pengambilan node dari posisi tertentu, dan setiap node yang dihapus harus didealokasi untuk mencegah kebocoran memori. Fungsi nbList berguna untuk menghitung jumlah node, sedangkan deleteList menghapus seluruh node hingga list menjadi kosong.
+
+## Referensi
+[1] Triase. (2020). Diktat Edisi Revisi : STRUKTUR DATA. Medan: UNIVERSTAS ISLAM NEGERI SUMATERA UTARA MEDAN. 
+<br>[2] Indahyati, Uce., Rahmawati Yunianita. (2020). "BUKU AJAR ALGORITMA DAN PEMROGRAMAN DALAM BAHASA C++". Sidoarjo: Umsida Press. Diakses pada 10 Maret 2024 melalui https://doi.org/10.21070/2020/978-623-6833-67-4.
