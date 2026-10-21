@@ -517,7 +517,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL4/UNGUIDED1/output_unguided1.png)
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED1/output_unguided1.png)
 
 Program membuat list kosong terlebih dahulu dengan CreateList, kemudian mengalokasikan 5 node secara berurutan dengan nilai 2, 0, 8, 12, dan 9 lalu menyisipkannya di awal list menggunakan insertFirst. Karena penyisipan selalu di awal, node yang terakhir disisipkan (9) menjadi elemen pertama list, diikuti 12, 8, 0, dan 2 sebagai elemen terakhir. Fungsi printInfo menelusuri list dari First hingga Nil dan menampilkan setiap info node sehingga output yang dihasilkan adalah 9 12 8 0 2, sesuai dengan ilustrasi linked list pada soal.
 
@@ -635,7 +635,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL4/UNGUIDED2/output_unguided2.png)
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED2/output_unguided2.png)
 
 Fungsi findElm menelusuri list dari elemen pertama hingga Nil. Setiap node dibandingkan nilai info-nya dengan nilai yang dicari. Jika ditemukan node dengan info == 8, fungsi mengembalikan alamat node tersebut. Karena list berisi 9, 12, 8, 0, 2, maka node dengan info 8 ditemukan pada posisi ketiga. Program kemudian menampilkan pesan 8 ditemukan dalam list sesuai dengan output yang diharapkan pada soal.
 
@@ -766,7 +766,7 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL4/UNGUIDED2/output_unguided2.png)
+![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED3/output_unguided3.png)
 
 Fungsi sumInfo menelusuri seluruh node dari First hingga Nil menggunakan variabel bantu P. Setiap nilai info pada node ditambahkan ke variabel total. Setelah penelusuran selesai, nilai total berisi 9 + 12 + 8 + 0 + 2 = 31. Program kemudian menampilkan Total info dari kelima elemen adalah 31, sesuai dengan output yang diharapkan pada soal.
 
