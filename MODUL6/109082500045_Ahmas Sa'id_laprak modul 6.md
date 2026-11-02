@@ -154,7 +154,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED1/output_unguided1.png)
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED1/output_unguided1.png)
 
 Program membuat list kosong dengan CreateList, kemudian meminta input secara berulang. Sebelum data dimasukkan ke dalam list menggunakan insertLast, fungsi findElm dipanggil untuk mengecek apakah kodeBuku sudah terdaftar. Jika duplikat (seperti input B001 kedua), program menolak dan menampilkan pesan. Fungsi printInfo sengaja ditelusuri mundur menggunakan pointer Last dan prev agar urutan output terbalik (B004, B003, B001), sesuai dengan ilustrasi pada soal.
 
@@ -297,7 +297,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED2/output_unguided2.png)
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED2/output_unguided2.png)
 
 Fungsi findElm menelusuri list dari elemen pertama hingga Nil. Setiap node dibandingkan nilai kodeBuku-nya dengan nilai yang dicari. Jika ditemukan node dengan kodeBuku == B001, fungsi mengembalikan alamat node tersebut. Program kemudian menampilkan detail informasi buku (Kode, Judul, Tahun) sesuai dengan data node yang ditemukan.
 
@@ -504,7 +504,7 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL5/UNGUIDED3/output_unguided3.png)
+![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED3/output_unguided3.png)
 
 Program mencari node yang akan dihapus (B003) menggunakan fungsi findElm. Karena B003 berada di tengah list, program mengambil node sebelum B003 (yaitu B001) melalui pointer prev dan menyimpannya sebagai Prec. Prosedur deleteAfter dipanggil untuk memutus rantai dengan mengarahkan next milik Prec langsung ke node setelah B003, dan memperbarui prev node tujuan ke Prec. Node B003 kemudian didealokasi. Output akhir membuktikan B003 terhapus dan list tetap terhubung dengan benar.
 
