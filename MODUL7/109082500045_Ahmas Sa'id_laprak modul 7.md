@@ -298,7 +298,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED1/output_unguided1.png)
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL7/UNGUIDED1/output_unguided1.png)
 
 Program ini mengimplementasikan stack menggunakan array berukuran 20 dengan indeks top. Stack kosong ditandai top = 0. Operasi push menambahkan data pada indeks top lalu menaikkan top, sedangkan pop menurunkan top lalu mengambil data. Prosedur balikStack membalik urutan isi array dengan menukar elemen dari depan dan belakang. Pada main, urutan push/pop menghasilkan isi stack dari TOP: 9 2 4 3, lalu setelah dibalik menjadi 3 4 2 9.
 
@@ -443,7 +443,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED2/output_unguided2.png)
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL7/UNGUIDED2/output_unguided2.png)
 
 Program ini menambahkan prosedur pushAscending, yaitu push yang menjaga isi stack tetap terurut ascending dari bawah ke atas. Caranya, elemen yang lebih besar dari nilai baru dikeluarkan sementara ke array bantu, nilai baru dimasukkan, lalu elemen bantu dikembalikan. Karena printInfo mencetak dari TOP, hasilnya terlihat descending: 9 8 4 3 3 2. Setelah balikStack, urutannya menjadi ascending: 2 3 3 4 8 9.
 
@@ -584,7 +584,7 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL6/UNGUIDED3/output_unguided3.png)
+![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL7/UNGUIDED3/output_unguided3.png)
 
 Program ini menambahkan prosedur getInputStream yang membaca input user karakter demi karakter menggunakan cin.get() sampai user menekan Enter. Setiap karakter langsung dimasukkan ke stack. Pada contoh input ABC, stack menyimpan nilai ASCII 65 66 67, sehingga saat dicetak dari TOP terlihat 67 66 65. Setelah balikStack, urutannya menjadi 65 66 67. Jika ingin menampilkan huruf aslinya, tipe infotype bisa diganti menjadi char.
 
