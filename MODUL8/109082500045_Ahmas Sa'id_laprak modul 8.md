@@ -500,7 +500,7 @@ int main() {
 ### Output Unguided 1 :
 
 ##### Output 1
-![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak2-strukturdata/blob/main/output1unguided1.png)
+![Screenshot Output Unguided 1_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL8/UNGUIDED1/output_unguided1.png)
 
 Program ini mengimplementasikan queue statis dengan mekanisme Alternatif 1, yaitu head selalu tetap di indeks 0 (diam) dan tail bergerak. Saat dequeue, seluruh elemen digeser ke kiri sehingga elemen pertama terhapus dan tail berkurang. Queue kosong ditandai dengan head = -1 dan tail = -1. Pada output, terlihat posisi head selalu 0 saat queue tidak kosong, sedangkan tail berubah sesuai jumlah elemen.
 
@@ -616,7 +616,7 @@ int main() {
 ### Output Unguided 2 :
 
 ##### Output 1
-![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak2-strukturdata/blob/main/output_unguided2.png)
+![Screenshot Output Unguided 2_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL8/UNGUIDED2/output_unguided2.png)
 
 Program ini mengimplementasikan queue statis dengan mekanisme Alternatif 2, yaitu head dan tail sama-sama bergerak. Saat dequeue, head dinaikkan sehingga elemen pertama tidak diakses lagi. Queue kosong ditandai dengan head = -1 dan tail = -1. Pada output, terlihat head bergerak maju setiap kali dequeue dilakukan, dan tail bergerak maju saat enqueue. Tidak ada pergeseran elemen sehingga operasi lebih efisien.
 
@@ -735,7 +735,7 @@ int main() {
 ### Output Unguided 3 :
 
 ##### Output 1
-![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak2-strukturdata/blob/main/output_unguided3.png)
+![Screenshot Output Unguided 3_1](https://github.com/ahmassaid/laprak_strukturdata/blob/main/MODUL8/UNGUIDED3/output_unguided3.png)
 
 Program ini mengimplementasikan queue statis dengan mekanisme Alternatif 3, yaitu circular buffer. Indeks head dan tail bergerak memutar menggunakan operasi modulo MAX. Queue kosong ditandai dengan head = -1 dan tail = -1. Queue penuh terjadi jika (tail + 1) % MAX == head. Pada output, terlihat head dan tail bergerak memutar, dan elemen dapat ditampilkan secara berurutan dari head ke tail dengan memutar indeks.
 
